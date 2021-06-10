@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <title>Estilos </title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=EB+Garamond&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
+    </head>
+
+<body>
+    <div class="header">
+        <div class="returnbar">
+            <input type='button' value='⮜' onclick='javascript:history.go(-1);' />
+        </div>
+        <h1>Casual</h1>
+    </div>
+
+    <div class="navbar" style="flex-direction: row;">
+        <img id="estilo1" src="assets/estilo_casual.png" style="cursor:pointer;" onclick="atualizarVisibilidade()" alt="" />
+        <div id="wrapper">
+            <img id="estilo2" src="assets/estilo_casual2.png" style="display: block;" alt="" />
+            <div id="descricao" style="display: none;width: 80%;margin-right: -100%;">
+                <ul>
+                    <li>Camisa verde musgo</li>
+                    <li>Cinto de couro marrom</li>
+                    <li>Shorts bege</li>
+                    <li>Chápeu de palha com detalhes em azul</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+
+<script>
+    $: var estiloCasual = document.getElementById("estilo1");
+
+    function atualizarVisibilidade() {
+        $: var estilo2 = document.getElementById("estilo2");
+        $: var descricao = document.getElementById("descricao");
+
+        if (descricao.style.display == "none") {
+            $('#wrapper').animate({
+                'margin-right': '-300%',
+            }, {
+                duration: 1000,
+                complete: function () {
+                    descricao.style.display = "block";
+                    estilo2.style.display = "none";
+
+                    $('#wrapper').animate({
+                        'margin-right': '0',
+                    }, {
+                        duration: 1000
+                    });
+                }
+            });
+        } else {
+            $('#wrapper').animate({
+                'margin-right': '-300%',
+            }, {
+                duration: 1000,
+                complete: function () {
+                    estilo2.style.display = "block";
+                    descricao.style.display = "none";
+
+                    $('#wrapper').animate({
+                        'margin-right': '0',
+                    }, {
+                        duration: 1000
+                    });
+                }
+            });
+        }
+    }
+</script>
+</body>
+
+</html>

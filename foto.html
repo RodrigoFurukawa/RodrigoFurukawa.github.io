@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+
+<head>
+    <title> foto </title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/foto.css">
+    <link href="https://fonts.googleapis.com/css2?family=EB+Garamond&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
+    </head>
+
+<body>
+    <div class="header" style="text-align: center;">
+        <div class="returnbar">
+            <input type='button' value='⮜' onclick='javascript:history.go(-1);' />
+        </div>
+        <div id="corEscolhida" style="display:none;">
+            <h1>Esta foi a imagem escolhida</h1>
+            <h1>Selecione os elementos dos quais deseja ver a cor</h1>
+        </div>
+    </div>
+
+    <div class="foto-wrapper">
+        <div id="upload">
+            <input type="file" id="foto-upload" style="display: none;" onchange="checarimg()" /><br>
+            <input type="button" id="upload-proxy" value="Escolha uma imagem"/>
+            <input type="button" value="Tirar foto" />
+
+        </div>
+        <div id="imagem" style="visibility: hidden;">
+            <img id="grafico" src="assets/pie_chart.png" alt=""  />
+        </div>
+    </div>
+
+
+<script>
+    $: var divUpload = document.getElementById("upload")
+    $: var divImagem = document.getElementById("imagem")
+    $: var corEscolhida = document.getElementById("corEscolhida")
+    $: var input = document.getElementsByTagName("input")
+    $: var btnUpload = document.getElementById("foto-upload")
+    $: var uploadProxy = document.getElementById("upload-proxy")
+
+    uploadProxy.addEventListener("click", function() {
+        btnUpload.click();
+    })
+
+    function checarimg() {
+        console.log(btnUpload.files)
+        if (btnUpload.files.length > 0) {
+            uploadImagem();
+        }
+    }
+
+    function uploadImagem() {
+        divUpload.style.visibility = "hidden";
+        divImagem.style.visibility = "visible";
+        corEscolhida.style.display = "block"
+        input[0].onclick = ""
+        input[0].addEventListener("click", function() {
+            window.location.reload(false)
+        })
+
+        divImagem.addEventListener('click', function () {
+            var img = document.getElementById("grafico")
+            img.src = "assets/pie_chart_processed.png"
+
+            corEscolhida.style.display = "none";
+        })
+    }
+</script>
+</body>
+</html>
